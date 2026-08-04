@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南投 4 天 3 夜自駕指南 - Plan C 高山慢遊版</title>
+    <style>
+        :root {
+            --primary-color: #2e5a44;
+            --primary-dark: #1e3c2d;
+            --accent-color: #e28743;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-sub: #606f7b;
+            --border-color: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 30px;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+        .overview-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+        .overview-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .overview-list {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            list-style: none;
+        }
+        .overview-list li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: baseline;
+        }
+        .overview-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 12px;
+            margin-right: 4px;
+        }
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .day-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .day-header .date-tag {
+            background: #edf2f7;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            color: var(--text-sub);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 16px;
+            border-left: 2px solid #e2e8f0;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            border-left: 2px solid transparent;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+        .time-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 2px;
+        }
+        .item-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .item-desc {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #4285F4;
+            color: white;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 6px;
+            box-shadow: 0 1px 3px rgba(66,133,244,0.3);
+            transition: background 0.2s;
+        }
+        .btn-map:active {
+            background-color: #3367d6;
+        }
+        .btn-route {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #34A853;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(52,168,83,0.25);
+        }
+        .badge-verify {
+            background-color: #e6fffa;
+            color: #234e52;
+            border: 1px solid #b2f5ea;
+            font-size: 0.7rem;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+        .badge-warn {
+            background-color: #fffaf0;
+            color: #9c4221;
+            border: 1px solid #feebc8;
+            font-size: 0.7rem;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+        .hotel-box {
+            background-color: #f7fafc;
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.88rem;
+        }
+        .hotel-title {
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+        .notice-card {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 16px;
+        }
+        .notice-title {
+            color: #c53030;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .notice-list {
+            font-size: 0.85rem;
+            color: #742a2a;
+            padding-left: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🚗 南投 4 天 3 夜自駕指南</h1>
+        <p>Plan C 高山慢遊版｜手機導航點擊直接開 Map</p>
+    </header>
+
+    <div class="container">
+
+        <!-- 總覽卡片 -->
+        <div class="overview-card">
+            <div class="overview-title">📌 行程重點與住宿設定</div>
+            <ul class="overview-list">
+                <li><strong>D1 & D2 住宿：</strong>【清境之星樂活民宿】（連住 2 晚免打包換房）</li>
+                <li><strong>D3 住宿：</strong>【埔里鎮市區】（台一楓樺卉館或市區飯店）</li>
+                <li><strong>特色：</strong>刪除梨山拉車段，不走折返跑，每天單程車程在 1.5 小時以內！</li>
+            </ul>
+        </div>
+
+        <!-- DAY 1 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span>DAY 1：埔里 ➔ 奧萬大 ➔ 霧社 ➔ 清境</span>
+                <span class="date-tag">車程約 2.5h</span>
+            </div>
+
+            <a class="btn-route" href="https://www.google.com/maps/dir/Puli+Township,+Nantou+County,+Taiwan/Aowanda+National+Forest+Recreation+Area,+No.+153%E8%99%9F%E5%A4%A7%E5%AE%89%E8%B7%AF%E8%A6%AA%E6%84%9B%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Mona+Rudao+Monument,+No.+153%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E4%BB%81%E6%84%9B%E9%84%89%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Star+Villa,+No.+182-3%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E5%A4%A7%E5%90%8C%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/data=!4m26!4m25!1m5!1m1!19sChIJObyOSHDZaDQRqP7U0WrjK2A!2m2!1d120.9646866!2d23.993287199999997!1m5!1m1!19sChIJXx8RkabGaDQR--M93L8duRo!2m2!1d121.1801555!2d23.964371399999997!1m5!1m1!19sChIJJ9mD4o_CaDQRLZszC99yTyg!2m2!1d121.1610488!2d23.9902641!1m5!1m1!19sChIJh1FNEQ7CaDQR17JQbBTW3NA!2m2!1d121.1558283!2d24.0495199!3e0" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 1 完整導航路線</a>
+
+            <div class="timeline-item">
+                <div class="time-badge">11:30 - 13:00</div>
+                <div class="item-title">菊肉圓 <span class="badge-verify">11:30-售完</span> <span class="badge-warn">週二三公休</span></div>
+                <div class="item-desc">埔里在地排隊小吃，保留肉餡倒入大骨高湯美味享用。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%8F%8A%E8%82%89%E5%9C%93" target="_top" rel="noopener noreferrer">📍 導航到菊肉圓</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">13:15 - 14:15</div>
+                <div class="item-title">寶湖宮天地堂地母廟 <span class="badge-verify">06:00-21:00</span></div>
+                <div class="item-desc">青綠色琉璃瓦宏偉殿宇，登高俯瞰埔里盆地景緻。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%AF%B6%E6%B9%96%E5%AE%AE%E5%A4%A9%E5%9C%B0%E5%A0%82%E5%9C%B0%E6%AF%8D%E5%BB%9F" target="_top" rel="noopener noreferrer">📍 導航到地母廟</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">15:30 - 17:15</div>
+                <div class="item-title">奧萬大國家森林遊樂區 <span class="badge-verify">08:00-17:00</span></div>
+                <div class="item-desc">漫步瀑布步道、楓林步道與奧萬大吊橋，吸收芬多精。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A5%A7%E8%90%AC%E5%A4%A7%E5%9C%8B%E5%AE%B6%E6%A3%AE%E6%9E%97%E9%81%8A%E6%A8%82%E5%8D%80" target="_top" rel="noopener noreferrer">📍 導航到奧萬大</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">17:15 - 18:00</div>
+                <div class="item-title">莫那魯道抗日紀念碑（霧社） <span class="badge-verify">常態開放</span></div>
+                <div class="item-desc">奧萬大返回清境必經，緬懷歷史並遠眺萬大水庫美景。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%8E%AB%E9%82%A3%E9%AD%AF%E9%81%93%E6%8A%97%E6%97%A5%E7%B4%80%E5%BF%B5%E7%A2%91" target="_top" rel="noopener noreferrer">📍 導航到紀念碑</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">18:30 - 20:00</div>
+                <div class="item-title">清境魯媽媽雲南擺夷料理 <span class="badge-verify">11:00-20:00</span></div>
+                <div class="item-desc">招牌必點：錦撒（包生菜）、滇味椒麻雞、包料魚（建議預訂）。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86" target="_top" rel="noopener noreferrer">📍 導航到魯媽媽</a>
+            </div>
+
+            <div class="hotel-box">
+                <div class="hotel-title">🏠 DAY 1 住宿：清境之星樂活民宿</div>
+                <div>佔地廣闊，設有露天星空庭園與觀景平台。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E4%B9%8B%E6%98%9F%E6%A8%82%E6%B4%BB%E6%B0%91%E5%AE%BF" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到清境之星</a>
+            </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span>DAY 2：清境農場 ➔ 武嶺/石門山 ➔ 下午茶</span>
+                <span class="date-tag">車程僅約 1.5h</span>
+            </div>
+
+            <a class="btn-route" href="https://www.google.com/maps/dir/Star+Villa,+No.+182-3%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E5%A4%A7%E5%90%8C%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Wuling,+No.+170%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E5%BE%B7%E9%B9%BF%E8%B0%B7%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Montagne,+No.+16-1%E8%99%9F%E5%A4%A7%E5%90%8C%E6%9D%91%E4%BB%81%E5%92%8C%E8%B7%AF%E4%BB%81%E6%84%9B%E9%84%89%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Star+Villa,+No.+182-3%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E5%A4%A7%E5%90%8C%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/data=!4m26!4m25!1m5!1m1!19sChIJh1FNEQ7CaDQR17JQbBTW3NA!2m2!1d121.1558283!2d24.0495199!1m5!1m1!19sChIJte6zETiTaDQRA6gtQKdhV8k!2m2!1d121.275739!2d24.137128099999998!1m5!1m1!19sChIJmYj4qgzCaDQRLGq85qU_aN8!2m2!1d121.1565555!2d24.0373032!1m5!1m1!19sChIJh1FNEQ7CaDQR17JQbBTW3NA!2m2!1d121.1558283!2d24.0495199!3e0" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 2 完整導航路線</a>
+
+            <div class="timeline-item">
+                <div class="time-badge">08:30 - 11:30</div>
+                <div class="item-title">清境農場 & 高空觀景步道 <span class="badge-verify">08:00-17:00</span></div>
+                <div class="item-desc">綿羊秀（假日 09:30、14:30）、馬術秀（10:45），高空步道無死角遠眺群山。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4" target="_top" rel="noopener noreferrer">📍 導航到清境農場</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">12:15 - 13:30</div>
+                <div class="item-title">松雪樓餐廳 <span class="badge-verify">午餐 11:30-14:00</span></div>
+                <div class="item-desc">全台最高海拔餐廳，享用溫熱自助午餐與高山視野。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%9D%BE%E9%9B%AA%E6%A8%93" target="_top" rel="noopener noreferrer">📍 導航到松雪樓</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">13:30 - 15:30</div>
+                <div class="item-title">合歡山武嶺 ＋ 石門山步道 <span class="badge-verify">24h開放</span></div>
+                <div class="item-desc">武嶺（3,275m）打卡，漫步最易親近百岳石門山（來回約 1h）。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA" target="_top" rel="noopener noreferrer">📍 導航到武嶺</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">16:15 - 17:30</div>
+                <div class="item-title">蒙塔妮手作甜點 <span class="badge-verify">09:00-18:00</span></div>
+                <div class="item-desc">藏身老英格蘭後方，享受精緻法式甜點與無敵山谷夕照美景。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%92%99%E5%A1%9F%E5%A6%AE%E6%89%8B%E4%BD%9C%E7%94%9C%E9%BB%9E" target="_top" rel="noopener noreferrer">📍 導航到蒙塔妮</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">18:00 - 19:30</div>
+                <div class="item-title">伊拿谷景觀餐廳 <span class="badge-verify">11:00-21:00</span></div>
+                <div class="item-desc">皮酥肉嫩甕缸雞、高山高麗菜與清蒸鱒魚。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E6%8F%BF%E8%B0%B7%E6%99%AF%E8%A7%80%E9%A4%90%E5%BB%B3" target="_top" rel="noopener noreferrer">📍 導航到伊拿谷</a>
+            </div>
+
+            <div class="hotel-box">
+                <div class="hotel-title">🏠 DAY 2 住宿：清境之星樂活民宿（連住免打包）</div>
+                <div>享受高山無光害星空夜景。</div>
+            </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span>DAY 3：小瑞士花園 ➔ 埔里城堡文化</span>
+                <span class="date-tag">車程約 50m</span>
+            </div>
+
+            <a class="btn-route" href="https://www.google.com/maps/dir/Star+Villa,+No.+182-3%E8%99%9F%E4%BB%81%E5%92%8C%E8%B7%AF%E5%A4%A7%E5%90%8C%E6%9D%91%E4%BB%81%E6%84%9B%E9%84%89,+%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/Cona's+Chococastle,+No.+32%E8%99%9F%E6%A1%83%E7%B1%B3%E8%B7%AF%E5%9F%94%E9%87%8C%E9%8E%AE%E5%8D%97%E6%8A%95%E7%B8%A3+Taiwan/data=!4m14!4m13!1m5!1m1!19sChIJh1FNEQ7CaDQR17JQbBTW3NA!2m2!1d121.1558283!2d24.0495199!1m5!1m1!19sChIJHRsWmszZaDQR1yhoiOKZpwc!2m2!1d120.9261765!2d23.9422036!3e0" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 3 完整導航路線</a>
+
+            <div class="timeline-item">
+                <div class="time-badge">09:30 - 11:30</div>
+                <div class="item-title">清境小瑞士花園 <span class="badge-verify">09:00-21:00</span></div>
+                <div class="item-desc">歐式花園造景、水舞池與露天咖啡座，步調輕鬆悠閒。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92" target="_top" rel="noopener noreferrer">📍 導航到小瑞士花園</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">12:30 - 13:30</div>
+                <div class="item-title">胡國雄古早麵 <span class="badge-verify">10:00-19:30</span></div>
+                <div class="item-desc">埔里老字號切仔麵、紹興干貝麵與古早味黑白切小菜。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%83%A1%E5%9C%8B%E9%9B%84%E5%8F%A4%E6%97%A9%E9%BA%B5" target="_top" rel="noopener noreferrer">📍 導航到胡國雄古早麵</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">13:45 - 16:30</div>
+                <div class="item-title">Cona's 妮娜巧克力夢想城堡 <span class="badge-verify">10:00-17:30</span></div>
+                <div class="item-desc">巴洛克式歐式城堡，內部光雕秀、免費宮廷服體驗與精緻巧克力。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A6%AE%E5%A8%9C%E5%B7%A7%E5%85%8B%E5%8A%9B%E5%A4%A2%E6%83%B3%E5%9F%8E%E5%A0%A1" target="_top" rel="noopener noreferrer">📍 導航到妮娜城堡</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">18:00 - 20:00</div>
+                <div class="item-title">雕之森樹屋餐廳 / 埔里四季蒸宴 <span class="badge-verify">11:30-20:30</span></div>
+                <div class="item-desc">埔里在地食材結合無煙蒸煮或日式無菜單特色料理。</div>
+            </div>
+
+            <div class="hotel-box">
+                <div class="hotel-title">🏠 DAY 3 住宿：埔里鎮市區飯店/民宿</div>
+                <div>推薦：台一楓樺卉館、綠莊飛瀑休閒度假山莊。</div>
+            </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span>DAY 4：手作造紙 ➔ 伴手禮採買 ➔ 賦歸</span>
+                <span class="date-tag">市區路段短</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">08:00 - 09:30</div>
+                <div class="item-title">愛蘭早點達人 <span class="badge-verify">06:00-11:00</span></div>
+                <div class="item-desc">埔里必吃排隊早餐，必點香酥鹹油條加蔥花與煎蛋。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%84%9B%E8%98%AD%E6%97%A9%E9%BB%9E%E9%81%94%E4%BA%BA" target="_top" rel="noopener noreferrer">📍 導航到愛蘭早點</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">09:30 - 11:30</div>
+                <div class="item-title">廣興紙寮手作拓印 DIY <span class="badge-verify">09:00-17:00</span> <span class="badge-warn">週三公休</span></div>
+                <div class="item-desc">體驗傳統造紙工藝，親手體驗造紙與拓印作品帶回家。</div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%BB%A3%E8%88%88%E7%B4%99%E5%AF%AE" target="_top" rel="noopener noreferrer">📍 導航到廣興紙寮</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">11:30 - 13:00</div>
+                <div class="item-title">伴手禮名店巡禮</div>
+                <div class="item-desc">
+                    • <strong>天子舒芙蕾 慈恩門市</strong>（10:00-18:00，蜜香紅茶口味）<br>
+                    • <strong>果丘in 白木耳吸凍飲</strong>（10:30-18:00，週三公休）
+                </div>
+                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E5%AD%90%E8%88%92%E8%8A%99%E8%95%BE%20%E6%85%88%E6%81%A9%E9%96%80%E5%B8%82" target="_top" rel="noopener noreferrer">📍 導航到天子舒芙蕾</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">13:00 ~</div>
+                <div class="item-title">開車順上國道 6 號輕鬆賦歸 🚗</div>
+            </div>
+        </div>
+
+        <!-- 防坑提示 -->
+        <div class="notice-card">
+            <div class="notice-title">⚠️ 出發防坑提示與保暖提醒</div>
+            <ul class="notice-list">
+                <li><strong>公休注意：</strong>菊肉圓公休每週二、三；廣興紙寮/果丘in 公休每週三。</li>
+                <li><strong>高山保暖：</strong>武嶺/石門山海拔高達 3,000m 以上，氣溫較平地低約 15~18 度，請務必帶禦寒防风外套。</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
