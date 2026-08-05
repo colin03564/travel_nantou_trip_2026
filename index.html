@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>南投 埔里 清境 4 天 3 夜自駕遊</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2e5a44;
             --primary-dark: #1e3c2d;
+            --primary-light: #437a5f;
             --accent-color: #e28743;
+            --accent-hover: #d17531;
             --bg-color: #f4f6f8;
             --card-bg: #ffffff;
             --text-main: #2c3e50;
-            --text-sub: #606f7b;
+            --text-sub: #5a6a78;
             --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 24px rgba(46,90,68,0.15);
         }
         * {
             box-sizing: border-box;
@@ -22,103 +33,279 @@
         }
         html {
             -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 30px;
-            -webkit-overflow-scrolling: touch;
+            padding-bottom: 40px;
             overflow-x: hidden;
             width: 100%;
         }
+
+        /* HEADER & HERO */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 60%, var(--primary-light) 100%);
             color: white;
-            padding: 20px 16px;
+            padding: 32px 20px 24px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            position: relative;
         }
         header h1 {
-            font-size: 1.3rem;
+            font-size: clamp(1.4rem, 4vw, 2.1rem);
             font-weight: 700;
             letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
         header p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin-top: 4px;
+            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+            opacity: 0.92;
+            margin-bottom: 14px;
         }
-        .container {
-            max-width: 600px;
+        .hero-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chip {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* STICKY NAV TABS */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 8px 12px;
+        }
+        .nav-tabs {
+            display: flex;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 12px;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: flex-start;
         }
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .nav-tabs {
+                justify-content: center;
+            }
+        }
+        .tab-btn {
+            background: #edf2f7;
+            color: var(--text-sub);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 8px rgba(46,90,68,0.25);
+        }
+
+        /* MAIN CONTAINER & RWD LAYOUT */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding: 0 16px;
+        }
+
+        /* TOP INFO GRID (OVERVIEW + NOTICE) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 3fr 2fr;
+            }
+        }
+
         .overview-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .overview-card:hover {
+            box-shadow: var(--shadow-md);
         }
         .overview-title {
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary-color);
-            font-size: 1rem;
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .overview-list {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             color: var(--text-sub);
             list-style: none;
         }
         .overview-list li {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             display: flex;
             align-items: baseline;
+            line-height: 1.5;
         }
         .overview-list li::before {
             content: "•";
             color: var(--accent-color);
             font-weight: bold;
+            font-size: 1.2rem;
             display: inline-block;
-            width: 12px;
+            width: 14px;
             margin-right: 4px;
+            flex-shrink: 0;
         }
+
+        .notice-card {
+            background: #fff8f5;
+            border: 1px solid #feebc8;
+            border-left: 6px solid var(--accent-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .notice-title {
+            color: #c05621;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .notice-list {
+            font-size: 0.88rem;
+            color: #7b341e;
+            padding-left: 18px;
+            line-height: 1.5;
+        }
+        .notice-list li {
+            margin-bottom: 6px;
+        }
+
+        /* DAY CARDS GRID */
+        .days-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 868px) {
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .day-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            scroll-margin-top: 60px;
         }
+        .day-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
         .day-header {
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             font-weight: 700;
             color: var(--primary-color);
             border-bottom: 2px dashed var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .day-header .date-tag {
-            background: #edf2f7;
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            color: var(--text-sub);
+            background: #e6fffa;
+            color: #234e52;
+            border: 1px solid #b2f5ea;
+            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 14px;
+            font-weight: 600;
+        }
+
+        .btn-route {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #34A853 0%, #2e9648 100%);
+            color: white;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.88rem;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 8px rgba(52,168,83,0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-route:hover {
+            background: linear-gradient(135deg, #2e9648 0%, #26803d 100%);
+            box-shadow: 0 5px 12px rgba(52,168,83,0.35);
+        }
+        .btn-route:active {
+            transform: scale(0.98);
+        }
+
+        /* TIMELINE */
+        .timeline {
+            flex-grow: 1;
         }
         .timeline-item {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 16px;
+            padding-left: 22px;
+            margin-bottom: 18px;
             border-left: 2px solid #e2e8f0;
         }
         .timeline-item:last-child {
@@ -129,11 +316,12 @@
             content: "";
             position: absolute;
             left: -6px;
-            top: 4px;
+            top: 5px;
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: var(--primary-color);
+            box-shadow: 0 0 0 3px white, 0 0 0 4px var(--primary-color);
         }
         .time-badge {
             font-size: 0.8rem;
@@ -149,11 +337,21 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 6px;
+            line-height: 1.4;
         }
         .item-desc {
             font-size: 0.88rem;
             color: var(--text-sub);
             margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        /* BUTTON MAP */
+        .btn-map-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
         }
         .btn-map {
             display: inline-flex;
@@ -162,280 +360,365 @@
             background-color: #4285F4;
             color: white;
             text-decoration: none;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
             font-size: 0.78rem;
             font-weight: 600;
-            margin-top: 6px;
-            box-shadow: 0 1px 3px rgba(66,133,244,0.3);
-            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(66,133,244,0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-map:hover {
+            background-color: #3367d6;
+            box-shadow: 0 4px 8px rgba(66,133,244,0.35);
         }
         .btn-map:active {
-            background-color: #3367d6;
+            transform: scale(0.97);
         }
-        .btn-route {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: #34A853;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 4px rgba(52,168,83,0.25);
-        }
+
+        /* BADGES */
         .badge-verify {
             background-color: #e6fffa;
             color: #234e52;
             border: 1px solid #b2f5ea;
-            font-size: 0.7rem;
-            padding: 1px 5px;
+            font-size: 0.72rem;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: 500;
         }
         .badge-warn {
             background-color: #fffaf0;
             color: #9c4221;
             border: 1px solid #feebc8;
-            font-size: 0.7rem;
-            padding: 1px 5px;
+            font-size: 0.72rem;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: 500;
         }
+
+        /* HOTEL BOX */
         .hotel-box {
-            background-color: #f7fafc;
-            border: 1px solid var(--border-color);
-            padding: 10px 12px;
-            border-radius: 8px;
-            margin-top: 10px;
+            background-color: #ebf8ff;
+            border: 1px solid #bee3f8;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            margin-top: 14px;
             font-size: 0.88rem;
         }
         .hotel-title {
-            font-weight: bold;
+            font-weight: 700;
             color: #2b6cb0;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-        .notice-card {
-            background: #fff5f5;
-            border: 1px solid #fed7d7;
-            border-radius: 12px;
-            padding: 14px;
-            margin-top: 16px;
+        .hotel-box div {
+            color: #2c5282;
         }
-        .notice-title {
-            color: #c53030;
-            font-weight: bold;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-        }
-        .notice-list {
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 28px 16px 0;
             font-size: 0.85rem;
-            color: #742a2a;
-            padding-left: 18px;
+            color: var(--text-sub);
         }
     </style>
 </head>
 <body>
 
+    <!-- HERO HEADER -->
     <header>
-        <h1>🚗 南投 4 天 3 夜自駕指南</h1>
-        <p>清境歐風高山慢遊版｜8/22 (六) ~ 8/25 (二)</p>
+        <h1>🚗 南投 埔里 清境 4 天 3 夜自駕遊</h1>
+        <p>高山慢遊全攻略｜手機點擊即刻開 Maps 導航</p>
+        <div class="hero-chips">
+            <span class="chip">📅 2026/08/22 - 08/25</span>
+            <span class="chip">⛰️ 清境 ✕ 埔里 ✕ 合歡山武嶺</span>
+            <span class="chip">🏰 歐風民宿 ✕ 擺夷風味餐</span>
+        </div>
     </header>
+
+    <!-- STICKY DAY NAVIGATION TABS -->
+    <nav class="sticky-nav">
+        <div class="nav-tabs">
+            <a href="#overview" class="tab-btn active">📌 總覽與提示</a>
+            <a href="#day1" class="tab-btn">DAY 1 (8/22)</a>
+            <a href="#day2" class="tab-btn">DAY 2 (8/23)</a>
+            <a href="#day3" class="tab-btn">DAY 3 (8/24)</a>
+            <a href="#day4" class="tab-btn">DAY 4 (8/25)</a>
+        </div>
+    </nav>
 
     <div class="container">
 
-        <!-- 總覽卡片 -->
-        <div class="overview-card">
-            <div class="overview-title">📌 行程重點與住宿設定</div>
-            <ul class="overview-list">
-                <li><strong>D1 住宿：</strong>【清境珂之幄山莊】（歐風木屋質感體驗）</li>
-                <li><strong>D2 住宿：</strong>【清境佛羅倫斯渡假山莊】（義式鄉村宮廷渡假）</li>
-                <li><strong>D3 住宿：</strong>【埔里市區飯店】（承萬尊爵渡假酒店 / 今埔里渡假大酒店）</li>
-                <li><strong>行程亮點：</strong>青青草原羊群、高空觀景步道、登高合歡山武嶺、英式古堡下午茶、滇緬擺夷特色料理！</li>
-            </ul>
-        </div>
-
-        <!-- DAY 1 -->
-        <div class="day-card">
-            <div class="day-header">
-                <span>DAY 1：漫遊清境 ➔ 下午茶 ➔ 歐風民宿</span>
-                <span class="date-tag">8月22日 (六)</span>
+        <!-- TOP INFO GRID (OVERVIEW & NOTICE) -->
+        <div class="info-grid" id="overview">
+            <!-- 總覽卡片 -->
+            <div class="overview-card">
+                <div class="overview-title">📌 行程重點與住宿設定</div>
+                <ul class="overview-list">
+                    <li><strong>D1 住宿：</strong>【清境珂之幄山莊】（歐風木屋質感體驗）</li>
+                    <li><strong>D2 住宿：</strong>【清境佛羅倫斯渡假山莊】（義式鄉村宮廷渡假）</li>
+                    <li><strong>D3 住宿：</strong>【埔里市區飯店】（承萬尊爵渡假酒店 / 今埔里渡假大酒店）</li>
+                    <li><strong>行程亮點：</strong>青青草原羊群、高空觀景步道、登高合歡山武嶺、英式古堡下午茶、滇緬擺夷特色料理！</li>
+                </ul>
             </div>
 
-            <a class="btn-route" href="https://www.google.com/maps/dir/%E5%8F%B0%E4%B8%AD%E5%B8%82/%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92/%E6%B8%85%E5%A2%83%E8%80%81%E8%8B%B1%E6%A0%BC%E8%98%AD%E7%B6%AD%E5%90%89%E8%AB%BE%E9%A4%90%E5%BB%B3/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 1 完整導航路線</a>
-
-            <div class="timeline-item">
-                <div class="time-badge">上午</div>
-                <div class="item-title">台中出發 ➔ 開車前往清境 🚗</div>
-                <div class="item-desc">從台中開車出發前往清境，沿途欣賞高山綠意山景與蔚藍天空。</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">12:00</div>
-                <div class="item-title">好雞婆土雞城（午餐） <span class="badge-verify">11:00-14:00, 17:00-20:00</span></div>
-                <div class="item-desc">品嚐道地的滇緬擺夷風味料理與香酥烤雞，獨特水上帳篷景觀區用餐體驗。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E" target="_top" rel="noopener noreferrer">📍 導航到好雞婆土雞城</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">下午</div>
-                <div class="item-title">清境農場小瑞士花園 <span class="badge-verify">09:00-21:00</span></div>
-                <div class="item-desc">漫步歐式花園造景、水舞池與水上教堂，步調輕鬆悠閒。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92" target="_top" rel="noopener noreferrer">📍 導航到小瑞士花園</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">下午</div>
-                <div class="item-title">清境老英格蘭維吉諾餐廳（英式下午茶） <span class="badge-verify">11:30-16:00</span></div>
-                <div class="item-desc">享用精緻雙人英式下午茶，感受宏偉哥德式歐式古堡與莊園氛圍。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%80%81%E8%8B%B1%E6%A0%BC%E8%98%AD%E7%B6%AD%E5%90%89%E8%AB%BE%E9%A4%90%E5%BB%B3" target="_top" rel="noopener noreferrer">📍 導航到老英格蘭維吉諾餐廳</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">18:00</div>
-                <div class="item-title">清境當地或民宿周邊晚餐</div>
-                <div class="item-desc">於清境商圈或民宿周邊餐廳輕鬆享用晚餐。</div>
-            </div>
-
-            <div class="hotel-box">
-                <div class="hotel-title">🏠 DAY 1 住宿：清境珂之幄山莊 (The Cotswolds Villa)</div>
-                <div>英式鄉村溫馨木屋風格，提供絕佳觀景視野與舒適住宿環境。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到珂之幄山莊</a>
+            <!-- 防坑提示 -->
+            <div class="notice-card">
+                <div class="notice-title">⚠️ 出發防坑提示與保暖提醒</div>
+                <ul class="notice-list">
+                    <li><strong>高山保暖：</strong>武嶺海拔高達 3,275m，氣溫較平地低約 15~18°C，請務必攜帶防風保暖外套。</li>
+                    <li><strong>預約提醒：</strong>老英格蘭維吉諾餐廳下午茶與好雞婆/魯媽媽擺夷料理建議提前電話預訂。</li>
+                    <li><strong>山路安全：</strong>山區路段多彎易有霧氣，駕駛請維持安全車距並全程開啟頭燈。</li>
+                </ul>
             </div>
         </div>
 
-        <!-- DAY 2 -->
-        <div class="day-card">
-            <div class="day-header">
-                <span>DAY 2：青青草原 ➔ 高空步道 ➔ 雲端美景</span>
-                <span class="date-tag">8月23日 (日)</span>
+        <!-- DAYS GRID -->
+        <div class="days-grid">
+
+            <!-- DAY 1 -->
+            <div class="day-card" id="day1">
+                <div>
+                    <div class="day-header">
+                        <span>DAY 1：漫遊清境 ➔ 下午茶 ➔ 歐風民宿</span>
+                        <span class="date-tag">8月22日 (六)</span>
+                    </div>
+
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E5%8F%B0%E4%B8%AD%E5%B8%82/%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92/%E6%B8%85%E5%A2%83%E8%80%81%E8%8B%B1%E6%A0%BC%E8%98%AD%E7%B6%AD%E5%90%89%E8%AB%BE%E9%A4%90%E5%BB%B3/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 1 完整導航路線</a>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time-badge">上午</div>
+                            <div class="item-title">台中出發 ➔ 開車前往清境 🚗</div>
+                            <div class="item-desc">從台中開車出發前往清境，沿途欣賞高山綠意山景與蔚藍天空。</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">12:00</div>
+                            <div class="item-title">好雞婆土雞城（午餐） <span class="badge-verify">11:00-14:00, 17:00-20:00</span></div>
+                            <div class="item-desc">品嚐道地的滇緬擺夷風味料理與香酥烤雞，獨特水上帳篷景觀區用餐體驗。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E" target="_top" rel="noopener noreferrer">📍 導航到好雞婆土雞城</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">下午</div>
+                            <div class="item-title">清境農場小瑞士花園 <span class="badge-verify">09:00-21:00</span></div>
+                            <div class="item-desc">漫步歐式花園造景、水舞池與水上教堂，步調輕鬆悠閒。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92" target="_top" rel="noopener noreferrer">📍 導航到小瑞士花園</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">下午</div>
+                            <div class="item-title">清境老英格蘭維吉諾餐廳（英式下午茶） <span class="badge-verify">11:30-16:00</span></div>
+                            <div class="item-desc">享用精緻雙人英式下午茶，感受宏偉哥德式歐式古堡與莊園氛圍。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%80%81%E8%8B%B1%E6%A0%BC%E8%98%AD%E7%B6%AD%E5%90%89%E8%AB%BE%E9%A4%90%E5%BB%B3" target="_top" rel="noopener noreferrer">📍 導航到老英格蘭維吉諾餐廳</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">18:00</div>
+                            <div class="item-title">清境當地或民宿周邊晚餐</div>
+                            <div class="item-desc">於清境商圈或民宿周邊餐廳輕鬆享用晚餐。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-box">
+                    <div class="hotel-title">🏠 DAY 1 住宿：清境珂之幄山莊 (The Cotswolds Villa)</div>
+                    <div>英式鄉村溫馨木屋風格，提供絕佳觀景視野與舒適住宿環境。</div>
+                    <div class="btn-map-group">
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到珂之幄山莊</a>
+                    </div>
+                </div>
             </div>
 
-            <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E9%9D%92%E9%9D%92%E8%8D%89%E5%8E%9F/%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93/%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 2 完整導航路線</a>
+            <!-- DAY 2 -->
+            <div class="day-card" id="day2">
+                <div>
+                    <div class="day-header">
+                        <span>DAY 2：青青草原 ➔ 高空步道 ➔ 雲端美景</span>
+                        <span class="date-tag">8月23日 (日)</span>
+                    </div>
 
-            <div class="timeline-item">
-                <div class="time-badge">09:00 - 11:30</div>
-                <div class="item-title">清境農場（青青草原）＋ 高空觀景步道 <span class="badge-verify">08:00-17:00</span></div>
-                <div class="item-desc">觀賞廣闊青青草原與可愛羊群（綿羊秀 09:30/14:30、馬術秀 10:45），隨後漫步視野遼闊的高空觀景步道。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4" target="_top" rel="noopener noreferrer">📍 導航到清境農場</a>
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%8F%E5%B1%B1%E8%8E%8A/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E9%9D%92%E9%9D%92%E8%8D%89%E5%8E%9F/%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93/%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 2 完整導航路線</a>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time-badge">09:00 - 11:30</div>
+                            <div class="item-title">清境農場（青青草原）＋ 高空觀景步道 <span class="badge-verify">08:00-17:00</span></div>
+                            <div class="item-desc">觀賞廣闊青青草原與可愛羊群（綿羊秀 09:30/14:30、馬術秀 10:45），隨後漫步視野遼闊的高空觀景步道。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4" target="_top" rel="noopener noreferrer">📍 導航到清境農場</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">12:00</div>
+                            <div class="item-title">清境魯媽媽雲南擺夷料理（午餐） <span class="badge-verify">11:00-20:00</span></div>
+                            <div class="item-desc">品嚐獨特滇緬擺夷佳餚（招牌錦撒、雲南椒麻雞、包料魚等）。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86" target="_top" rel="noopener noreferrer">📍 導航到魯媽媽</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">下午</div>
+                            <div class="item-title">清境周邊悠閒拍照與賞景</div>
+                            <div class="item-desc">午後悠閒在清境周邊景觀咖啡或步道拍照，欣賞山嵐、雲海與高山景色變化。</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">18:00</div>
+                            <div class="item-title">清境享用晚餐</div>
+                            <div class="item-desc">在清境當地特色餐廳或民宿輕鬆享用晚餐。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-box">
+                    <div class="hotel-title">🏠 DAY 2 住宿：清境佛羅倫斯渡假山莊 (Florence Resort Villa)</div>
+                    <div>義式鄉村與歐式宮廷風格，享受極致高山奢華渡假風情。</div>
+                    <div class="btn-map-group">
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到佛羅倫斯山莊</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="time-badge">12:00</div>
-                <div class="item-title">清境魯媽媽雲南擺夷料理（午餐） <span class="badge-verify">11:00-20:00</span></div>
-                <div class="item-desc">品嚐獨特滇緬擺夷佳餚（招牌錦撒、雲南椒麻雞、包料魚等）。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86" target="_top" rel="noopener noreferrer">📍 導航到魯媽媽</a>
+            <!-- DAY 3 -->
+            <div class="day-card" id="day3">
+                <div>
+                    <div class="day-header">
+                        <span>DAY 3：登高武嶺 ➔ 遠眺水庫 ➔ 轉往埔里</span>
+                        <span class="date-tag">8月24日 (一)</span>
+                    </div>
+
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A/%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA/%E9%9C%A7%E7%A4%BE%E6%B0%B4%E5%BA%AB/%E5%9F%94%E9%87%8C%E5%85%83%E9%A6%96%E9%A4%A8/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 3 完整導航路線</a>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time-badge">上午</div>
+                            <div class="item-title">合歡山武嶺牌樓 ＋ 霧社水庫 <span class="badge-verify">24h開放</span></div>
+                            <div class="item-desc">清境出發上行至全台公路最高點武嶺（3,275m），欣賞壯麗群山與雲海。下山途中順道遠眺霧社水庫（萬大水庫）湖光山色。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA" target="_top" rel="noopener noreferrer">📍 導航到武嶺</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">12:00</div>
+                            <div class="item-title">霧社或埔里沿途午餐</div>
+                            <div class="item-desc">於霧社商圈或下山前往埔里沿途景觀餐廳享用午餐。</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">下午</div>
+                            <div class="item-title">埔里景點探索（元首館 / 紙教堂 Paper Dome）</div>
+                            <div class="item-desc">驅車前往埔里，走訪歐式西洋棋城堡「元首館」或充滿人文與自然生態的「紙教堂 Paper Dome」。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E5%85%83%E9%A6%96%E9%A4%A8" target="_top" rel="noopener noreferrer">📍 導航到元首館</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_top" rel="noopener noreferrer">📍 導航到紙教堂</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">18:00</div>
+                            <div class="item-title">埔里鎮在地美食晚餐</div>
+                            <div class="item-desc">於埔里鎮上品嚐在地特色小吃（胡國雄古早麵、李仔哥爌肉飯等）或特色餐廳美食。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-box">
+                    <div class="hotel-title">🏠 DAY 3 住宿：埔里鎮市區飯店</div>
+                    <div>推薦：承萬尊爵渡假酒店 或 今埔里渡假大酒店。</div>
+                    <div class="btn-map-group">
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到承萬尊爵酒店</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="time-badge">下午</div>
-                <div class="item-title">清境周邊悠閒拍照與賞景</div>
-                <div class="item-desc">午後悠閒在清境周邊景觀咖啡或步道拍照，欣賞山嵐、雲海與高山景色變化。</div>
+            <!-- DAY 4 -->
+            <div class="day-card" id="day4">
+                <div>
+                    <div class="day-header">
+                        <span>DAY 4：埔里半日遊 ➔ 採買特產 ➔ 賦歸</span>
+                        <span class="date-tag">8月25日 (二)</span>
+                    </div>
+
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97/%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD/%E5%9F%94%E9%87%8C%E9%85%92%E5%BB%A0" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 4 完整導航路線</a>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time-badge">上午</div>
+                            <div class="item-title">埔里鯉魚潭散步漫遊 <span class="badge-verify">常態開放</span></div>
+                            <div class="item-desc">前往景色優美的鯉魚潭（埔里小西湖）沿著環湖步道散步，欣賞湖光山色與柳堤柳影。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD" target="_top" rel="noopener noreferrer">📍 導航到鯉魚潭</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">上午</div>
+                            <div class="item-title">埔里在地特產巡禮與採買</div>
+                            <div class="item-desc">採買埔里道地特產伴手禮（如紹興酒、手工紙製品、現採茭白筍、天子舒芙蕾、果丘in吸凍飲）。</div>
+                            <div class="btn-map-group">
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%85%92%E5%BB%A0" target="_top" rel="noopener noreferrer">📍 導航到埔里酒廠</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">12:00</div>
+                            <div class="item-title">埔里輕鬆享用午餐</div>
+                            <div class="item-desc">於埔里鎮上享用出發前的在地美味午餐。</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="time-badge">14:00</div>
+                            <div class="item-title">結束美好假期 快樂賦歸 🚗</div>
+                            <div class="item-desc">結束充實美好的南投四天三夜假期，準時開車順上國道 6 號平安返家。</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="time-badge">18:00</div>
-                <div class="item-title">清境享用晚餐</div>
-                <div class="item-desc">在清境當地特色餐廳或民宿輕鬆享用晚餐。</div>
-            </div>
-
-            <div class="hotel-box">
-                <div class="hotel-title">🏠 DAY 2 住宿：清境佛羅倫斯渡假山莊 (Florence Resort Villa)</div>
-                <div>義式鄉村與歐式宮廷風格，享受極致高山奢華渡假風情。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到佛羅倫斯山莊</a>
-            </div>
         </div>
 
-        <!-- DAY 3 -->
-        <div class="day-card">
-            <div class="day-header">
-                <span>DAY 3：登高武嶺 ➔ 遠眺水庫 ➔ 轉往埔里</span>
-                <span class="date-tag">8月24日 (一)</span>
-            </div>
-
-            <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A/%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA/%E9%9C%A7%E7%A4%BE%E6%B0%B4%E5%BA%AB/%E5%9F%94%E9%87%8C%E5%85%83%E9%A6%96%E9%A4%A8/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 3 完整導航路線</a>
-
-            <div class="timeline-item">
-                <div class="time-badge">上午</div>
-                <div class="item-title">合歡山武嶺牌樓 ＋ 霧社水庫 <span class="badge-verify">24h開放</span></div>
-                <div class="item-desc">清境出發上行至全台公路最高點武嶺（3,275m），欣賞壯麗群山與雲海。下山途中順道遠眺霧社水庫（萬大水庫）湖光山色。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA" target="_top" rel="noopener noreferrer">📍 導航到武嶺</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">12:00</div>
-                <div class="item-title">霧社或埔里沿途午餐</div>
-                <div class="item-desc">於霧社商圈或下山前往埔里沿途景觀餐廳享用午餐。</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">下午</div>
-                <div class="item-title">埔里景點探索（元首館 / 紙教堂 Paper Dome）</div>
-                <div class="item-desc">驅車前往埔里，走訪歐式西洋棋城堡「元首館」或充滿人文與自然生態的「紙教堂 Paper Dome」。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E5%85%83%E9%A6%96%E9%A4%A8" target="_top" rel="noopener noreferrer">📍 導航到元首館</a>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_top" rel="noopener noreferrer" style="margin-left:4px;">📍 導航到紙教堂</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">18:00</div>
-                <div class="item-title">埔里鎮在地美食晚餐</div>
-                <div class="item-desc">於埔里鎮上品嚐在地特色小吃（胡國雄古早麵、李仔哥爌肉飯等）或特色餐廳美食。</div>
-            </div>
-
-            <div class="hotel-box">
-                <div class="hotel-title">🏠 DAY 3 住宿：埔里鎮市區飯店</div>
-                <div>推薦：承萬尊爵渡假酒店 或 今埔里渡假大酒店。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到承萬尊爵酒店</a>
-            </div>
-        </div>
-
-        <!-- DAY 4 -->
-        <div class="day-card">
-            <div class="day-header">
-                <span>DAY 4：埔里半日遊 ➔ 採買特產 ➔ 賦歸</span>
-                <span class="date-tag">8月25日 (二)</span>
-            </div>
-
-            <a class="btn-route" href="https://www.google.com/maps/dir/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97/%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD/%E5%9F%94%E9%87%8C%E9%85%92%E5%BB%A0" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 4 完整導航路線</a>
-
-            <div class="timeline-item">
-                <div class="time-badge">上午</div>
-                <div class="item-title">埔里鯉魚潭散步漫遊 <span class="badge-verify">常態開放</span></div>
-                <div class="item-desc">前往景色優美的鯉魚潭（埔里小西湖）沿著環湖步道散步，欣賞湖光山色與柳堤柳影。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD" target="_top" rel="noopener noreferrer">📍 導航到鯉魚潭</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">上午</div>
-                <div class="item-title">埔里在地特產巡禮與採買</div>
-                <div class="item-desc">採買埔里道地特產伴手禮（如紹興酒、手工紙製品、現採茭白筍、天子舒芙蕾、果丘in吸凍飲）。</div>
-                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%85%92%E5%BB%A0" target="_top" rel="noopener noreferrer">📍 導航到埔里酒廠</a>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">12:00</div>
-                <div class="item-title">埔里輕鬆享用午餐</div>
-                <div class="item-desc">於埔里鎮上享用出發前的在地美味午餐。</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-badge">14:00</div>
-                <div class="item-title">結束美好假期 快樂賦歸 🚗</div>
-                <div class="item-desc">結束充實美好的南投四天三夜假期，準時開車順上國道 6 號平安返家。</div>
-            </div>
-        </div>
-
-        <!-- 防坑提示 -->
-        <div class="notice-card">
-            <div class="notice-title">⚠️ 出發防坑提示與保暖提醒</div>
-            <ul class="notice-list">
-                <li><strong>高山保暖：</strong>武嶺海拔高達 3,275m，氣溫較平地低約 15~18°C，請務必攜帶防風保暖外套。</li>
-                <li><strong>預約提醒：</strong>老英格蘭維吉諾餐廳下午茶與好雞婆/魯媽媽擺夷料理建議提前電話預訂。</li>
-                <li><strong>山路行車安全：</strong>山區路段多彎易有霧氣，駕駛請維持安全車距並全程開啟頭燈。</li>
-            </ul>
-        </div>
+        <footer>
+            <p>🚗 南投 埔里 清境 4 天 3 夜自駕指南 ✕ 響應式 RWD 行程指南網頁</p>
+        </footer>
 
     </div>
 
+    <!-- JS FOR ACTIVE NAV TAB HIGHLIGHT ON SCROLL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const sections = document.querySelectorAll('.info-grid, .day-card');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.getAttribute('href') === `#${current}`) {
+                        tab.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
