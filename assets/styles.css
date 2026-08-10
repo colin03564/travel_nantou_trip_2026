@@ -81,6 +81,9 @@
             margin-bottom: 16px;
             text-shadow: 0 4px 24px rgba(0,0,0,0.34);
         }
+        header h1 span {
+            display: block;
+        }
         header p {
             max-width: 760px;
             font-size: clamp(1rem, 2.4vw, 1.35rem);
@@ -466,26 +469,110 @@
         .hotel-box .btn-map {
             margin-top: 4px;
         }
-
         @media (max-width: 560px) {
+            body {
+                line-height: 1.55;
+            }
             header {
-                padding: 32px 16px 24px;
+                min-height: 330px;
+                padding: 42px 18px 62px;
+                text-align: center;
+                background-position: center top;
+            }
+$118rem;
+                font-size: clamp(2rem, 9vw, 2.45rem);
+                line-height: 1.18;
+                margin-bottom: 14px;
+                text-wrap: balance;
+            }
+$118rem$21.5;
+                margin-bottom: 16px;
+                text-wrap: balance;
+            }
+            header p span {
+                display: block;
+            }
+            .hero-chips {
+                justify-content: center;
+                gap: 8px;
+            }
+            .chip {
+                max-width: 92%;
+                padding: 7px 12px;
+                font-size: 0.9rem;
+                line-height: 1.35;
+                white-space: normal;
+                text-align: center;
+            }
+            .sticky-nav {
+                padding: 8px 12px;
+            }
+            .nav-tabs {
+                gap: 10px;
+                scroll-padding-inline: 12px;
+            }
+            .tab-btn {
+                padding: 8px 14px;
+                font-size: 0.88rem;
             }
             .container {
+                margin-top: 16px;
                 padding: 0 12px;
             }
             .day-card,
             .overview-card,
             .notice-card {
-                padding: 16px;
+                padding: 18px;
+                border-radius: 12px;
+            }
+            .overview-title,
+            .notice-title {
+                align-items: flex-start;
+                font-size: 1.08rem;
+                line-height: 1.35;
+            }
+            .overview-list {
+                font-size: 0.95rem;
+            }
+            .overview-list li {
+                display: block;
+                position: relative;
+                padding-left: 18px;
+                line-height: 1.65;
+            }
+            .overview-list li::before {
+                position: absolute;
+                left: 0;
+                top: 0.1em;
+                width: auto;
+                margin-right: 0;
+            }
+            .overview-list strong {
+                white-space: nowrap;
+            }
+            .notice-list {
+                font-size: 0.92rem;
+                line-height: 1.65;
             }
             .day-header {
                 align-items: flex-start;
                 flex-direction: column;
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            .item-title {
+                font-size: 0.96rem;
+            }
+            .item-desc,
+            .hotel-box {
+                font-size: 0.9rem;
             }
             .btn-route,
             .btn-map {
                 width: 100%;
+                justify-content: center;
+                line-height: 1.35;
+                text-align: center;
             }
         }
 
