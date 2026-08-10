@@ -4,28 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; navigate-to 'self' https://www.google.com https://maps.google.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>南投 埔里 清境 4 天 3 夜自駕遊</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2e5a44;
-            --primary-dark: #1e3c2d;
-            --primary-light: #437a5f;
-            --accent-color: #e28743;
-            --accent-hover: #d17531;
-            --bg-color: #f4f6f8;
+            --primary-color: #23624b;
+            --primary-dark: #173c31;
+            --primary-light: #4b8f73;
+            --accent-color: #d9793a;
+            --accent-hover: #c7652a;
+            --bg-color: #f7f3eb;
             --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-sub: #5a6a78;
-            --border-color: #e2e8f0;
-            --radius-lg: 16px;
-            --radius-md: 10px;
+            --route-color: #2f7d59;
+            --map-color: #2f6fbb;
+            --hotel-bg: #edf6f8;
+            --text-main: #263238;
+            --text-sub: #61717d;
+            --border-color: #ded8cb;
+            --radius-lg: 14px;
+            --radius-md: 8px;
             --radius-sm: 6px;
-            --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
-            --shadow-hover: 0 8px 24px rgba(46,90,68,0.15);
+            --shadow-sm: 0 2px 8px rgba(39,50,56,0.06);
+            --shadow-md: 0 12px 30px rgba(39,50,56,0.10);
+            --shadow-hover: 0 16px 36px rgba(35,98,75,0.16);
         }
         * {
             box-sizing: border-box;
@@ -37,8 +39,10 @@
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
-            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(247,243,235,0.92) 360px),
+                var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             padding-bottom: 40px;
@@ -48,53 +52,81 @@
 
         /* HEADER & HERO */
         header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 60%, var(--primary-light) 100%);
+            min-height: clamp(360px, 46vw, 520px);
             color: white;
-            padding: 32px 20px 24px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            padding: 72px 20px 118px;
+            text-align: left;
+            box-shadow: 0 18px 48px rgba(23,60,49,0.24);
             position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(12,32,27,0.82) 0%, rgba(20,56,45,0.58) 44%, rgba(217,121,58,0.14) 100%),
+                linear-gradient(180deg, rgba(12,32,27,0.10) 0%, rgba(12,32,27,0.74) 100%),
+                url("assets/nantou-hero.png") center/cover no-repeat;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 90px;
+            background: linear-gradient(180deg, rgba(247,243,235,0) 0%, var(--bg-color) 82%);
+            pointer-events: none;
+        }
+        header h1,
+        header p,
+        .hero-chips {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
         header h1 {
-            font-size: clamp(1.4rem, 4vw, 2.1rem);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
+            max-width: 760px;
+            font-size: clamp(2rem, 5vw, 4.35rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.34);
         }
         header p {
-            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
-            opacity: 0.92;
-            margin-bottom: 14px;
+            max-width: 760px;
+            font-size: clamp(1rem, 2.4vw, 1.35rem);
+            opacity: 0.96;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.28);
         }
         .hero-chips {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 12px;
         }
         .chip {
             background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.34);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.14);
         }
-
         /* STICKY NAV TABS */
         .sticky-nav {
             position: sticky;
             top: 0;
             z-index: 99;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.86);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 8px 12px;
+            box-shadow: 0 10px 28px rgba(39,50,56,0.08);
+            padding: 10px 12px;
         }
         .nav-tabs {
             display: flex;
@@ -115,15 +147,15 @@
             }
         }
         .tab-btn {
-            background: #edf2f7;
+            background: #f1eadf;
             color: var(--text-sub);
             text-decoration: none;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 999px;
             font-size: 0.82rem;
             font-weight: 600;
             white-space: nowrap;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
             border: 1px solid transparent;
         }
         .tab-btn:hover, .tab-btn.active {
@@ -135,16 +167,16 @@
         /* MAIN CONTAINER & RWD LAYOUT */
         .container {
             max-width: 1100px;
-            margin: 20px auto 0;
-            padding: 0 16px;
+            margin: -58px auto 0;
+            padding: 0 18px;
         }
 
         /* TOP INFO GRID (OVERVIEW + NOTICE) */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 18px;
+            margin-bottom: 28px;
         }
         @media (min-width: 768px) {
             .info-grid {
@@ -153,10 +185,12 @@
         }
 
         .overview-card {
-            background: var(--card-bg);
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%),
+                var(--card-bg);
             border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            box-shadow: var(--shadow-sm);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-md);
             border-left: 6px solid var(--primary-color);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -195,12 +229,12 @@
         }
 
         .notice-card {
-            background: #fff8f5;
-            border: 1px solid #feebc8;
+            background: #fff7ed;
+            border: 1px solid #f4d4ad;
             border-left: 6px solid var(--accent-color);
             border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            box-shadow: var(--shadow-sm);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-md);
         }
         .notice-title {
             color: #c05621;
@@ -225,7 +259,7 @@
         .days-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
         }
         @media (min-width: 868px) {
             .days-grid {
@@ -234,17 +268,40 @@
         }
 
         .day-card {
-            background: var(--card-bg);
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,247,241,0.96) 100%),
+                var(--card-bg);
             border-radius: var(--radius-lg);
-            padding: 20px;
+            padding: 24px;
             box-shadow: var(--shadow-md);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            scroll-margin-top: 60px;
+            border: 1px solid rgba(222, 216, 203, 0.9);
+            scroll-margin-top: 78px;
+            position: relative;
+            overflow: hidden;
         }
+        .day-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        .day-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #2f6fbb, #2f7d59);
+        }
+        .day-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #d9793a, #7c4d2b);
+        }
+        .day-card:nth-child(4)::before {
+            background: linear-gradient(90deg, #6f8f4b, #2f6fbb);
+        }
+
         .day-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
@@ -254,9 +311,9 @@
             font-size: 1.12rem;
             font-weight: 700;
             color: var(--primary-color);
-            border-bottom: 2px dashed var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(222,216,203,0.92);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -264,12 +321,12 @@
             gap: 8px;
         }
         .day-header .date-tag {
-            background: #e6fffa;
-            color: #234e52;
-            border: 1px solid #b2f5ea;
+            background: #e8f5ef;
+            color: #1f5c47;
+            border: 1px solid #b8dccb;
             font-size: 0.78rem;
             padding: 3px 10px;
-            border-radius: 14px;
+            border-radius: 999px;
             font-weight: 600;
         }
 
@@ -280,20 +337,20 @@
             gap: 6px;
             width: 100%;
             text-align: center;
-            background: linear-gradient(135deg, #34A853 0%, #2e9648 100%);
+            background: linear-gradient(135deg, var(--route-color) 0%, #246b4d 100%);
             color: white;
             text-decoration: none;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border-radius: var(--radius-md);
             font-weight: 700;
             font-size: 0.88rem;
             margin-bottom: 16px;
-            box-shadow: 0 3px 8px rgba(52,168,83,0.25);
-            transition: all 0.2s ease;
+            box-shadow: 0 8px 18px rgba(47,125,89,0.28);
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
         .btn-route:hover {
-            background: linear-gradient(135deg, #2e9648 0%, #26803d 100%);
-            box-shadow: 0 5px 12px rgba(52,168,83,0.35);
+            background: linear-gradient(135deg, #286f50 0%, #1f5a41 100%);
+            box-shadow: 0 10px 24px rgba(47,125,89,0.36);
         }
         .btn-route:active {
             transform: scale(0.98);
@@ -305,9 +362,9 @@
         }
         .timeline-item {
             position: relative;
-            padding-left: 22px;
+            padding-left: 28px;
             margin-bottom: 18px;
-            border-left: 2px solid #e2e8f0;
+            border-left: 2px solid #d9d0c1;
         }
         .timeline-item:last-child {
             margin-bottom: 0;
@@ -316,13 +373,13 @@
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: -6px;
+            left: -7px;
             top: 5px;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: var(--primary-color);
-            box-shadow: 0 0 0 3px white, 0 0 0 4px var(--primary-color);
+            box-shadow: 0 0 0 4px white, 0 0 0 6px rgba(35,98,75,0.28);
         }
         .time-badge {
             font-size: 0.8rem;
@@ -358,15 +415,15 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background-color: #4285F4;
+            background-color: var(--map-color);
             color: white;
             text-decoration: none;
-            padding: 5px 12px;
-            border-radius: var(--radius-sm);
+            padding: 7px 12px;
+            border-radius: 999px;
             font-size: 0.78rem;
             font-weight: 600;
-            box-shadow: 0 2px 4px rgba(66,133,244,0.25);
-            transition: all 0.2s ease;
+            box-shadow: 0 5px 12px rgba(47,111,187,0.24);
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
         .btn-map:hover {
             background-color: #3367d6;
@@ -378,9 +435,9 @@
 
         /* BADGES */
         .badge-verify {
-            background-color: #e6fffa;
-            color: #234e52;
-            border: 1px solid #b2f5ea;
+            background-color: #e8f5ef;
+            color: #1f5c47;
+            border: 1px solid #b8dccb;
             font-size: 0.72rem;
             padding: 2px 6px;
             border-radius: 4px;
@@ -389,7 +446,7 @@
         .badge-warn {
             background-color: #fffaf0;
             color: #9c4221;
-            border: 1px solid #feebc8;
+            border: 1px solid #f4d4ad;
             font-size: 0.72rem;
             padding: 2px 6px;
             border-radius: 4px;
@@ -398,23 +455,48 @@
 
         /* HOTEL BOX */
         .hotel-box {
-            background-color: #ebf8ff;
-            border: 1px solid #bee3f8;
-            padding: 12px 14px;
+            background-color: var(--hotel-bg);
+            border: 1px solid #c8e2e8;
+            padding: 14px 16px;
             border-radius: var(--radius-md);
             margin-top: 14px;
             font-size: 0.88rem;
         }
         .hotel-title {
             font-weight: 700;
-            color: #2b6cb0;
+            color: #225d72;
             margin-bottom: 2px;
             display: flex;
             align-items: center;
             gap: 4px;
         }
         .hotel-box div {
-            color: #2c5282;
+            color: #2f6070;
+        }
+        .hotel-box .btn-map {
+            margin-top: 4px;
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding: 32px 16px 24px;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .day-card,
+            .overview-card,
+            .notice-card {
+                padding: 16px;
+            }
+            .day-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .btn-route,
+            .btn-map {
+                width: 100%;
+            }
         }
 
         /* FOOTER */
@@ -488,7 +570,7 @@
                         <span class="date-tag">8月22日 (六)</span>
                     </div>
 
-                    <a class="btn-route" href="https://www.google.com/maps/dir/%E5%8F%B0%E4%B8%AD%E5%B8%82/%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 1 完整導航路線</a>
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E5%8F%B0%E4%B8%AD%E5%B8%82/%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A" target="_blank" rel="noopener noreferrer">🗺️ 開啟 DAY 1 完整導航路線</a>
 
                     <div class="timeline">
                         <div class="timeline-item">
@@ -502,7 +584,7 @@
                             <div class="item-title">清境魯媽媽雲南擺夷料理（午餐） <span class="badge-verify">11:00-20:00</span></div>
                             <div class="item-desc">品嚐錦薩、包烤魚等道地滇緬擺夷佳餚。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86" target="_top" rel="noopener noreferrer">📍 導航到魯媽媽雲南擺夷料理</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AD%AF%E5%AA%BD%E5%AA%BD%E9%9B%B2%E5%8D%97%E6%93%BA%E5%A4%B7%E6%96%99%E7%90%86" target="_blank" rel="noopener noreferrer">📍 導航到魯媽媽雲南擺夷料理</a>
                             </div>
                         </div>
 
@@ -511,7 +593,7 @@
                             <div class="item-title">清境農場小瑞士花園 <span class="badge-verify">09:00-21:00</span></div>
                             <div class="item-desc">散步欣賞歐式花園造景，順逛周邊商圈。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92" target="_top" rel="noopener noreferrer">📍 導航到小瑞士花園</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E5%B0%8F%E7%91%9E%E5%A3%AB%E8%8A%B1%E5%9C%92" target="_blank" rel="noopener noreferrer">📍 導航到小瑞士花園</a>
                             </div>
                         </div>
 
@@ -533,7 +615,7 @@
                     <div class="hotel-title">🏠 DAY 1 住宿：清境珂之幄山莊 (The Cotswolds Villa)</div>
                     <div>英式鄉村溫馨木屋風格，提供絕佳觀景視野與舒適住宿環境。</div>
                     <div class="btn-map-group">
-                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到珂之幄山莊</a>
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A" target="_blank" rel="noopener noreferrer">📍 導航到珂之幄山莊</a>
                     </div>
                 </div>
             </div>
@@ -546,7 +628,7 @@
                         <span class="date-tag">8月23日 (日)</span>
                     </div>
 
-                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4/%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93/%E4%BC%8A%E6%8B%BF%E8%B0%B7%E6%99%AF%E8%A7%80%E9%A4%90%E5%BB%B3/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 2 完整導航路線</a>
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E7%8F%82%E4%B9%8B%E5%B9%84%E5%B1%B1%E8%8E%8A/%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4/%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93/%E4%BC%8A%E6%8B%BF%E8%B0%B7%E6%99%AF%E8%A7%80%E9%A4%90%E5%BB%B3/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_blank" rel="noopener noreferrer">🗺️ 開啟 DAY 2 完整導航路線</a>
 
                     <div class="timeline">
                         <div class="timeline-item">
@@ -554,8 +636,8 @@
                             <div class="item-title">青青草原 ＋ 清境高空觀景步道 <span class="badge-verify">08:00-17:00</span></div>
                             <div class="item-desc">兩區相連一併遊覽，欣賞綿羊秀與壯麗山景。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4" target="_top" rel="noopener noreferrer">📍 導航到青青草原</a>
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93" target="_top" rel="noopener noreferrer">📍 導航到高空觀景步道</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4" target="_blank" rel="noopener noreferrer">📍 導航到青青草原</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E9%AB%98%E7%A9%BA%E8%A7%80%E6%99%AF%E6%AD%A5%E9%81%93" target="_blank" rel="noopener noreferrer">📍 導航到高空觀景步道</a>
                             </div>
                         </div>
 
@@ -564,7 +646,7 @@
                             <div class="item-title">伊拿谷景觀餐廳（午餐）</div>
                             <div class="item-desc">享用招牌甕仔雞與高山野菜，遠眺萬大水庫。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E6%8B%BF%E8%B0%B7%E6%99%AF%E8%A7%80%E9%A4%90%E5%BB%B3" target="_top" rel="noopener noreferrer">📍 導航到伊拿谷景觀餐廳</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E6%8B%BF%E8%B0%B7%E6%99%AF%E8%A7%80%E9%A4%90%E5%BB%B3" target="_blank" rel="noopener noreferrer">📍 導航到伊拿谷景觀餐廳</a>
                             </div>
                         </div>
 
@@ -586,7 +668,7 @@
                     <div class="hotel-title">🏠 DAY 2 住宿：清境佛羅倫斯渡假山莊 (Florence Resort Villa)</div>
                     <div>義式鄉村與歐式宮廷風格，享受極致高山奢華渡假風情。</div>
                     <div class="btn-map-group">
-                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到佛羅倫斯山莊</a>
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A" target="_blank" rel="noopener noreferrer">📍 導航到佛羅倫斯山莊</a>
                     </div>
                 </div>
             </div>
@@ -599,7 +681,7 @@
                         <span class="date-tag">8月24日 (一)</span>
                     </div>
 
-                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A/%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA%E7%89%8C%E6%A8%93/%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E/%E8%92%99%E5%A1%94%E5%A6%AE%E6%B3%95%E5%BC%8F%E6%89%8B%E4%BD%9C%E7%94%9C%E9%BB%9E/%E8%8E%AB%E9%82%A3%E9%AD%AF%E9%81%93%E6%8A%97%E6%97%A5%E7%B4%80%E5%BF%B5%E7%A2%91/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 3 完整導航路線</a>
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%B8%85%E5%A2%83%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E6%B8%A1%E5%81%87%E5%B1%B1%E8%8E%8A/%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA%E7%89%8C%E6%A8%93/%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E/%E8%92%99%E5%A1%94%E5%A6%AE%E6%B3%95%E5%BC%8F%E6%89%8B%E4%BD%9C%E7%94%9C%E9%BB%9E/%E8%8E%AB%E9%82%A3%E9%AD%AF%E9%81%93%E6%8A%97%E6%97%A5%E7%B4%80%E5%BF%B5%E7%A2%91/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_blank" rel="noopener noreferrer">🗺️ 開啟 DAY 3 完整導航路線</a>
 
                     <div class="timeline">
                         <div class="timeline-item">
@@ -607,7 +689,7 @@
                             <div class="item-title">合歡山武嶺牌樓 <span class="badge-verify">24h開放</span></div>
                             <div class="item-desc">週一避開週末塞車潮，車程直上全台公路最高點，俯瞰雲海與壯麗群山。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA%E7%89%8C%E6%A8%93" target="_top" rel="noopener noreferrer">📍 導航到武嶺牌樓</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%90%88%E6%AD%A1%E5%B1%B1%E6%AD%A6%E5%B6%BA%E7%89%8C%E6%A8%93" target="_blank" rel="noopener noreferrer">📍 導航到武嶺牌樓</a>
                             </div>
                         </div>
 
@@ -616,7 +698,7 @@
                             <div class="item-title">好雞婆土雞城（午餐） <span class="badge-verify">11:00-14:00, 17:00-20:00</span></div>
                             <div class="item-desc">下山順路享用特色獨立帳篷包廂與香酥烤雞。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E" target="_top" rel="noopener noreferrer">📍 導航到好雞婆土雞城</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E9%9B%9E%E5%A9%86%E5%9C%9F%E9%9B%9E%E5%9F%8E" target="_blank" rel="noopener noreferrer">📍 導航到好雞婆土雞城</a>
                             </div>
                         </div>
 
@@ -625,7 +707,7 @@
                             <div class="item-title">蒙塔妮法式手作甜點</div>
                             <div class="item-desc">好雞婆吃完順訪，享用精緻高山法式下午茶。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%92%99%E5%A1%94%E5%A6%AE%E6%B3%95%E5%BC%8F%E6%89%8B%E4%BD%9C%E7%94%9C%E9%BB%9E" target="_top" rel="noopener noreferrer">📍 導航到蒙塔妮法式手作甜點</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%92%99%E5%A1%94%E5%A6%AE%E6%B3%95%E5%BC%8F%E6%89%8B%E4%BD%9C%E7%94%9C%E9%BB%9E" target="_blank" rel="noopener noreferrer">📍 導航到蒙塔妮法式手作甜點</a>
                             </div>
                         </div>
 
@@ -634,7 +716,7 @@
                             <div class="item-title">莫那魯道抗日紀念碑 ➔ 前往埔里</div>
                             <div class="item-desc">順路下山造訪，隨後驅車前往埔里鎮。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%8E%AB%E9%82%A3%E9%AD%AF%E9%81%93%E6%8A%97%E6%97%A5%E7%B4%80%E5%BF%B5%E7%A2%91" target="_top" rel="noopener noreferrer">📍 導航到莫那魯道抗日紀念碑</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E8%8E%AB%E9%82%A3%E9%AD%AF%E9%81%93%E6%8A%97%E6%97%A5%E7%B4%80%E5%BF%B5%E7%A2%91" target="_blank" rel="noopener noreferrer">📍 導航到莫那魯道抗日紀念碑</a>
                             </div>
                         </div>
 
@@ -656,7 +738,7 @@
                     <div class="hotel-title">🏠 DAY 3 住宿：埔里鎮市區飯店</div>
                     <div>推薦：承萬尊爵渡假酒店 或 今埔里渡假大酒店。</div>
                     <div class="btn-map-group">
-                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_top" rel="noopener noreferrer" style="margin-top:4px;">📍 導航到承萬尊爵酒店</a>
+                        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97" target="_blank" rel="noopener noreferrer">📍 導航到承萬尊爵酒店</a>
                     </div>
                 </div>
             </div>
@@ -669,7 +751,7 @@
                         <span class="date-tag">8月25日 (二)</span>
                     </div>
 
-                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97/%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD/18%E5%BA%A6C%E5%B7%A7%E5%85%8B%E5%8A%9B%E5%B7%A5%E6%88%BF/%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_top" rel="noopener noreferrer">🗺️ 開啟 DAY 4 完整導航路線</a>
+                    <a class="btn-route" href="https://www.google.com/maps/dir/%E6%89%BF%E8%90%AC%E5%B0%8A%E7%88%B5%E6%B8%A1%E5%81%87%E9%85%92%E5%BA%97/%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD/18%E5%BA%A6C%E5%B7%A7%E5%85%8B%E5%8A%9B%E5%B7%A5%E6%88%BF/%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_blank" rel="noopener noreferrer">🗺️ 開啟 DAY 4 完整導航路線</a>
 
                     <div class="timeline">
                         <div class="timeline-item">
@@ -677,7 +759,7 @@
                             <div class="item-title">埔里鯉魚潭散步漫遊 <span class="badge-verify">常態開放</span></div>
                             <div class="item-desc">前往景色優美的埔里鯉魚潭湖畔散步。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD" target="_top" rel="noopener noreferrer">📍 導航到鯉魚潭</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E5%9F%94%E9%87%8C%E9%AF%89%E9%AD%9A%E6%BD%AD" target="_blank" rel="noopener noreferrer">📍 導航到鯉魚潭</a>
                             </div>
                         </div>
 
@@ -686,7 +768,7 @@
                             <div class="item-title">18度C巧克力工房</div>
                             <div class="item-desc">採買生巧克力、生吐司等特色伴手禮。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=18%E5%BA%A6C%E5%B7%A7%E5%85%8B%E5%8A%9B%E5%B7%A5%E6%88%BF" target="_top" rel="noopener noreferrer">📍 導航到18度C巧克力工房</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=18%E5%BA%A6C%E5%B7%A7%E5%85%8B%E5%8A%9B%E5%B7%A5%E6%88%BF" target="_blank" rel="noopener noreferrer">📍 導航到18度C巧克力工房</a>
                             </div>
                         </div>
 
@@ -695,7 +777,7 @@
                             <div class="item-title">紙教堂 Paper Dome</div>
                             <div class="item-desc">參訪充滿人文與自然生態的紙教堂。</div>
                             <div class="btn-map-group">
-                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_top" rel="noopener noreferrer">📍 導航到紙教堂</a>
+                                <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%99%E6%95%99%E5%A0%82%20Paper%20Dome" target="_blank" rel="noopener noreferrer">📍 導航到紙教堂</a>
                             </div>
                         </div>
 
