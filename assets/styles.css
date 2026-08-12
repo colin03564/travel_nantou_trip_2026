@@ -171,6 +171,46 @@
             padding: 0 18px;
         }
 
+        /* PHOTO ALBUM BANNER */
+        .album-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #c7652a 0%, #d9793a 50%, #e6944f 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            font-size: 0.98rem;
+            /* Container has margin-top:-58px so its rounded cards peek over the hero photo;
+               that same offset would tuck this banner under the sticky nav (z-index:99), so
+               cancel it here and let the banner sit clear below the nav instead. */
+            margin-top: 58px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 22px rgba(199,101,42,0.28);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .album-banner:hover {
+            box-shadow: 0 10px 26px rgba(199,101,42,0.36);
+            transform: translateY(-2px);
+        }
+        .album-banner .album-sub {
+            font-weight: 500;
+            font-size: 0.8rem;
+            opacity: 0.92;
+        }
+        @media (max-width: 560px) {
+            .album-banner {
+                flex-direction: column;
+                gap: 2px;
+                text-align: center;
+                padding: 14px 18px;
+                margin-top: 0;
+            }
+        }
+
         /* TOP INFO GRID (OVERVIEW + NOTICE) */
         .info-grid {
             display: grid;
