@@ -224,7 +224,7 @@
             border-radius: var(--radius-lg);
             font-weight: 700;
             font-size: 0.98rem;
-            margin-bottom: 24px;
+            margin-bottom: 8px;
             box-shadow: 0 8px 22px rgba(47,111,187,0.28);
             transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
@@ -236,6 +236,12 @@
             font-weight: 500;
             font-size: 0.8rem;
             opacity: 0.92;
+        }
+        .map-hint {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            margin: 0 0 24px;
         }
         @media (max-width: 560px) {
             .map-banner {
