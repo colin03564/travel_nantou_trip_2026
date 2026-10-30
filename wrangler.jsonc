@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers（只放靜態檔案，沒有 Worker 程式）
+  "name": "nantou-trip-2026",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    // 只上傳 build 指令複製到 dist/ 的網站檔案（index.html、assets/、_headers）
+    "directory": "./dist"
+  }
+}
